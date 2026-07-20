@@ -67,8 +67,13 @@ body{background:var(--hex-pattern),var(--bg);font-family:'Segoe UI',Arial,sans-s
 @keyframes pg{from{width:0}to{width:100%}}
 .ts{position:fixed;top:4px;right:12px;font-size:9px;color:#37474F;z-index:51}
 @media(max-width:640px){
-  :root{--hh:64px}
-  .hdr-title{font-size:10px;max-width:140px}.hdr-mes{font-size:11px}.hdr-sub,.hdr-prom{font-size:9px}.dib-logo{height:32px}
+  :root{--hh:80px}
+  .hdr{flex-direction:column;align-items:flex-start;padding:6px 12px;gap:4px}
+  .logo-wrap{width:100%;justify-content:space-between}
+  .hdr-title{font-size:9px;max-width:180px}
+  .dib-logo{height:28px}
+  .hdr-r{display:none}
+  #btnPause{font-size:10px;padding:3px 8px}
   .layout{grid-template-columns:1fr;grid-template-areas:"p" "k" "c" "g";height:auto;padding:8px;gap:8px}
   .av{width:80px;height:80px;font-size:28px}.nm{font-size:13px}
   .kv{font-size:20px}.gg{grid-template-columns:repeat(2,1fr)}.cw{height:140px}
@@ -170,9 +175,25 @@ function go(i){
   setTimeout(()=>bc('c'+cur,DATA[cur]),50);
 }
 function next(){go((cur+1)%DATA.length)}
+let paused=false;
+function togglePause(){
+  paused=!paused;
+  const btn=document.getElementById('btnPause');
+  if(paused){
+    clearInterval(tmr);tmr=null;
+    btn.innerHTML='▶ REANUDAR';
+    btn.style.background='rgba(29,158,117,0.3)';
+    btn.style.borderColor='rgba(29,158,117,0.5)';
+  }else{
+    if(tmr)clearInterval(tmr);
+    tmr=setInterval(next,INT);
+    btn.innerHTML='⏸ PAUSAR';
+    btn.style.background='rgba(255,255,255,0.1)';
+    btn.style.borderColor='rgba(255,255,255,0.2)';
+  }
+}
 render();if(tmr)clearInterval(tmr);tmr=setInterval(next,INT);
-document.getElementById('slides').addEventListener('mouseenter',()=>clearInterval(tmr));
-document.getElementById('slides').addEventListener('mouseleave',()=>{tmr=setInterval(next,INT)});
+
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')go((cur-1+DATA.length)%DATA.length)});
 </script>
 </body>
