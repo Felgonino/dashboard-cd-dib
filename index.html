@@ -7,9 +7,10 @@
 <title>Dashboard CD — Julio 2026</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
-:root{--bg:#0A1628;--card:rgba(255,255,255,0.05);--border:rgba(255,255,255,0.1);--muted:#78909C;--sub:#90CAF9;--green:#69F0AE;--hh:60px}
+:root{--bg:#0C1A2E;--hex-pattern:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='70'%3E%3Cpolygon points='20,2 38,12 38,32 20,42 2,32 2,12' fill='none' stroke='rgba(46,117,182,0.08)' stroke-width='1'/%3E%3C/svg%3E");--card:rgba(255,255,255,0.05);--border:rgba(255,255,255,0.1);--muted:#78909C;--sub:#90CAF9;--green:#69F0AE;--hh:60px}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);font-family:'Segoe UI',Arial,sans-serif;color:#fff;min-height:100vh;overflow-x:hidden}
+body{background:var(--hex-pattern),var(--bg);font-family:'Segoe UI',Arial,sans-serif;color:#fff;min-height:100vh;overflow-x:hidden}
+
 .hdr{background:linear-gradient(135deg,#1F3864,#2E75B6);padding:0 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #2E75B6;height:var(--hh);position:sticky;top:0;z-index:50}
 .logo-wrap{display:flex;align-items:center;gap:8px;min-width:0;overflow:hidden}
 .dib-logo{height:40px;width:auto;object-fit:contain;flex-shrink:0}
