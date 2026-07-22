@@ -85,13 +85,21 @@ body{background:var(--bg);background-image:url("data:image/svg+xml,%3Csvg xmlns=
 .tc{border-radius:6px;padding:5px 7px;border-left:2px solid;background:rgba(255,255,255,0.03)}
 .tn{font-size:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
 .tv{font-size:12px;font-weight:800}.ta{font-size:8px;color:#546E7A;margin-top:1px}
-@media(max-width:640px){
+@media(max-width:700px){
   :root{--hh:54px}
-  .ops-grid{grid-template-columns:repeat(2,1fr)}
-  .op-btn-nombre{font-size:12px}.op-btn-val{font-size:16px}
-  .hdr-title{font-size:9px;max-width:150px}.dib-logo{height:28px}.hdr-r{display:none}
+  body{overflow-y:auto;height:auto}
+  .hdr-title{font-size:10px;max-width:160px}.dib-logo{height:28px}.hdr-r{display:none}
+  #mainScreen{height:auto;overflow:visible;padding:8px;gap:8px}
+  .eq-top{flex-wrap:wrap;gap:6px}
+  .eq-kpi{min-width:calc(50% - 4px);flex:none}
+  .eq-charts{grid-template-columns:1fr;gap:8px}
+  .eq-cw{min-height:220px}
   .detail-body{grid-template-columns:1fr;grid-template-areas:"p" "k" "c" "g";height:auto;overflow-y:auto}
+  .av{max-height:160px}
   .gg{grid-template-columns:repeat(2,1fr)}
+  .tg{grid-template-columns:repeat(2,1fr)}
+  .ops-grid{grid-template-columns:repeat(3,1fr)}
+  .op-btn{font-size:11px;padding:6px 8px}
 }
 </style>
 </head>
