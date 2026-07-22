@@ -209,29 +209,21 @@ function renderMain(){
         const prod=EQ['PRODUCCION']||{};
         const ot=EQ['OT MANUAL']||{};
         poc.innerHTML=`
-          <div style='background:rgba(0,137,123,0.1);border:1px solid rgba(0,137,123,0.3);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:12px'>
-            <div style='flex:1'>
-              <div style='font-size:8px;font-weight:700;letter-spacing:2px;color:#00897B;text-transform:uppercase'>Produccion Interna</div>
-              <div style='font-size:28px;font-weight:900;color:#69F0AE;line-height:1.1'>${Number(prod.unid||0).toLocaleString('es-CL')}<span style='font-size:12px;font-weight:400;color:#90CAF9;margin-left:4px'>u</span></div>
-              <div style='font-size:10px;color:#546E7A;margin-top:2px'>Ayer: <span style='color:#90CAF9'>${Number(prod.unid_ay||0).toLocaleString('es-CL')} u</span></div>
+          <div style='background:rgba(0,137,123,0.1);border:1px solid rgba(0,137,123,0.3);border-radius:10px;padding:10px 14px'>
+            <div style='font-size:8px;font-weight:700;letter-spacing:2px;color:#00897B;text-transform:uppercase;margin-bottom:4px'>Produccion Interna</div>
+            <div style='display:flex;align-items:baseline;gap:8px'>
+              <span style='font-size:32px;font-weight:900;color:#69F0AE'>${Number(prod.unid||0).toLocaleString('es-CL')}</span>
+              <span style='font-size:13px;color:#90CAF9'>unidades</span>
             </div>
-            <div style='text-align:right'>
-              <div style='font-size:10px;color:#78909C'>Val. mes</div>
-              <div style='font-size:14px;font-weight:700;color:#69F0AE'>${fmt(prod.val||0)}</div>
-              <div style='font-size:10px;color:#546E7A'>Ayer: ${fmt(prod.val_ay||0)}</div>
-            </div>
+            <div style='font-size:10px;color:#546E7A;margin-top:4px'>Ayer: <span style='color:#90CAF9'>${Number(prod.unid_ay||0).toLocaleString('es-CL')} u</span></div>
           </div>
-          <div style='background:rgba(136,135,128,0.1);border:1px solid rgba(136,135,128,0.3);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:12px'>
-            <div style='flex:1'>
-              <div style='font-size:8px;font-weight:700;letter-spacing:2px;color:#90CAF9;text-transform:uppercase'>Ordenes de Trabajo</div>
-              <div style='font-size:28px;font-weight:900;color:#fff;line-height:1.1'>${Number(ot.unid||0).toLocaleString('es-CL')}<span style='font-size:12px;font-weight:400;color:#90CAF9;margin-left:4px'>hrs</span></div>
-              <div style='font-size:10px;color:#546E7A;margin-top:2px'>Ayer: <span style='color:#90CAF9'>${Number(ot.unid_ay||0).toLocaleString('es-CL')} hrs</span></div>
+          <div style='background:rgba(136,135,128,0.1);border:1px solid rgba(136,135,128,0.3);border-radius:10px;padding:10px 14px'>
+            <div style='font-size:8px;font-weight:700;letter-spacing:2px;color:#90CAF9;text-transform:uppercase;margin-bottom:4px'>Ordenes de Trabajo</div>
+            <div style='display:flex;align-items:baseline;gap:8px'>
+              <span style='font-size:32px;font-weight:900;color:#fff'>${Number(ot.unid||0).toLocaleString('es-CL')}</span>
+              <span style='font-size:13px;color:#90CAF9'>horas</span>
             </div>
-            <div style='text-align:right'>
-              <div style='font-size:10px;color:#78909C'>Val. mes</div>
-              <div style='font-size:14px;font-weight:700;color:#fff'>${fmt(ot.val||0)}</div>
-              <div style='font-size:10px;color:#546E7A'>Ayer: ${fmt(ot.val_ay||0)}</div>
-            </div>
+            <div style='font-size:10px;color:#546E7A;margin-top:4px'>Ayer: <span style='color:#90CAF9'>${Number(ot.unid_ay||0).toLocaleString('es-CL')} hrs</span></div>
           </div>`;
       }
       (function(){
