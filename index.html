@@ -267,8 +267,8 @@ function renderMain(){
   (EXCLUIDOS_DASH||[]).forEach(nombre=>{
     const btn=document.createElement('div');
     btn.className='op-btn op-btn-noauth';
-    btn.innerHTML=`<div class='op-btn-nombre' style='opacity:0.5'>${nombre}</div>`
-      +`<div style='font-size:8px;color:#546E7A;margin-top:2px;letter-spacing:1px'>SIN AUTORIZACION</div>`;
+    btn.innerHTML=`<span style='opacity:0.5'>${nombre}</span>`
+      +`<div style='font-size:6px;color:#546E7A;margin-top:1px;letter-spacing:1px'>SIN AUTORIZACION</div>`;
     grid.appendChild(btn);
   });
 }
