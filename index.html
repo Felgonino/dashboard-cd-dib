@@ -321,8 +321,8 @@ function verDetalleTarea(tarea){
       if(!gd.val)return;
       const c=GCC2[gc]||'#888';
       gcHtml+=`<div class='gc' style='border-left-color:${c}'><div class='gn' style='color:${c}'>${gc}</div>`
-        +`<div class='gr'><span class='gv' style='color:${c}'>${fmt(gd.val)}</span><span class='gu'>${Number(gd.unid).toLocaleString('es-CL')}u</span></div>`
-        +`<div class='ga'>Ayer: ${fmt(gd.val_ay)} &middot; ${Number(gd.unid_ay).toLocaleString('es-CL')}u</div></div>`;
+        +`<div class='gr'><span class='gv' style='color:${c}'>${Number(gd.unid).toLocaleString('es-CL')} u</span><span class='gu'>${Number(gd.lineas||0)} lin</span></div>`
+        +`<div class='ga'>Ayer: ${Number(gd.unid_ay).toLocaleString('es-CL')}u &middot; ${gd.docs||0} ped</div></div>`;
     });
   }
   let gpHtml='';
