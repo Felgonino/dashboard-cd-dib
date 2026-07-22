@@ -26,10 +26,10 @@ body{background:var(--bg);background-image:url("data:image/svg+xml,%3Csvg xmlns=
 .eq-kpi-label{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--sub);margin-bottom:2px}
 .eq-kpi-val{font-size:16px;font-weight:900;line-height:1}
 .eq-kpi-ay{font-size:9px;color:var(--muted);margin-top:2px}
-.eq-charts{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:8px;flex:1;min-height:0}
+.eq-charts{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:8px;flex:1;min-height:0;overflow:hidden}
 .eq-cw{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;min-height:0}
 .eq-ct{font-size:9px;font-weight:700;letter-spacing:2px;color:#64B5F6;text-transform:uppercase;margin-bottom:5px;border-bottom:1px solid rgba(100,181,246,0.3);padding-bottom:3px}
-.eq-cw canvas{flex:1;min-height:0}
+.eq-cw canvas{flex:1;min-height:0;max-height:100%}
 .ops-grid{display:flex;flex-wrap:wrap;gap:5px;align-content:center;justify-content:center}
 .ops-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:5px;align-content:start}
 .op-btn{background:rgba(46,117,182,0.12);border:1px solid rgba(46,117,182,0.3);border-radius:8px;padding:7px 10px;cursor:pointer;transition:all 0.2s;font-size:12px;font-weight:700;color:#fff;white-space:normal;text-align:center;line-height:1.3}
@@ -93,13 +93,14 @@ body{background:var(--bg);background-image:url("data:image/svg+xml,%3Csvg xmlns=
   .eq-top{flex-wrap:wrap;gap:6px}
   .eq-kpi{min-width:calc(50% - 4px);flex:none}
   .eq-charts{grid-template-columns:1fr;gap:8px}
-  .eq-cw{min-height:220px}
+  .eq-cw{height:220px;min-height:unset}
   .detail-body{grid-template-columns:1fr;grid-template-areas:"p" "k" "c" "g";height:auto;overflow-y:auto}
   .av{max-height:160px}
   .gg{grid-template-columns:repeat(2,1fr)}
   .tg{grid-template-columns:repeat(2,1fr)}
   .ops-grid{grid-template-columns:repeat(3,1fr)}
   .op-btn{font-size:11px;padding:6px 8px}
+  canvas{max-height:200px}
 }
 </style>
 </head>
@@ -130,10 +131,10 @@ function bChartTarea(id, d, color){
       {type:'bar',label:'Diario',data:d.vals,backgroundColor:color+'88',borderColor:color,borderWidth:1,borderRadius:3,yAxisID:'y'},
       {type:'line',label:'Acumulado',data:d.acum,borderColor:'#69F0AE',backgroundColor:'transparent',borderWidth:2,pointRadius:2,tension:0.3,yAxisID:'y2'}
     ]},
-    options:{responsive:true,maintainAspectRatio:false,animation:{duration:500},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:500},resizeDelay:100,
       plugins:{legend:{display:true,position:'top',labels:{color:'#90CAF9',font:{size:8},boxWidth:8,padding:5}},
         tooltip:{callbacks:{label:c=>c.dataset.label+': '+Number(c.raw).toLocaleString('es-CL')}}},
-      scales:{x:{ticks:{color:'#546E7A',font:{size:9},maxRotation:45},grid:{color:'rgba(255,255,255,0.04)'}},
+      scales:{x:{ticks:{color:'#546E7A',font:{size:8},maxRotation:45,autoSkip:true,maxTicksLimit:11},grid:{color:'rgba(255,255,255,0.04)'}},
         y:{position:'left',ticks:{color:color,font:{size:9},callback:fmtN},grid:{color:'rgba(255,255,255,0.04)'}},
         y2:{position:'right',ticks:{color:'#69F0AE',font:{size:9},callback:fmtN},grid:{drawOnChartArea:false}}
       }
@@ -153,7 +154,7 @@ function renderMain(){
     const otros_l_ay=(EQ['PRODUCCION']||{}).lineas_ay||0+(EQ['OT MANUAL']||{}).lineas_ay||0;
     // KPIs fila superior
     et.innerHTML=[
-      `<div class='eq-kpi eq-kpi-btn' style='border-left:2px solid #1D9E75' onclick="verDetalleTarea('SALIDA')"><div class='eq-kpi-label' style='color:#1D9E75'>&#128722; Salidas</div><div class='eq-kpi-val' style='color:#1D9E75'>${Number(sal.unid||0).toLocaleString('es-CL')} u</div><div class='eq-kpi-ay'>${sal.lineas||0} lin &middot; Ayer: ${Number(sal.unid_ay||0).toLocaleString('es-CL')}u</div></div>`,
+      `<div class='eq-kpi eq-kpi-btn' style='border-left:2px solid #1D9E75' onclick="verDetalleTarea('SALIDA')"><div class='eq-kpi-label' style='color:#1D9E75'>&#128722; Salidas</div><div class='eq-kpi-val' style='color:#1D9E75'>${Number(sal.unid||0).toLocaleString('es-CL')} u</div><div class='eq-kpi-ay'>${sal.lineas||0} lin &middot; ${EQ.picks_mes||0} ped</div></div>`,
       `<div class='eq-kpi eq-kpi-btn' style='border-left:2px solid #C07000' onclick="verDetalleTarea('REUBICACION')"><div class='eq-kpi-label' style='color:#C07000'>&#128257; Reubicacion</div><div class='eq-kpi-val' style='color:#C07000'>${Number(reu.unid||0).toLocaleString('es-CL')} u</div><div class='eq-kpi-ay'>${reu.lineas||0} lineas &middot; Ayer: ${reu.unid_ay||0}u</div></div>`,
       `<div class='eq-kpi eq-kpi-btn' style='border-left:2px solid #2E75B6' onclick="verDetalleTarea('RECEPCION')"><div class='eq-kpi-label' style='color:#2E75B6'>&#128230; Recepcion</div><div class='eq-kpi-val' style='color:#2E75B6'>${Number(rec.unid||0).toLocaleString('es-CL')} u</div><div class='eq-kpi-ay'>${rec.lineas||0} lineas &middot; Ayer: ${rec.unid_ay||0}u</div></div>`,
       `<div class='eq-kpi'><div class='eq-kpi-label'>Avance del Mes</div><div class='eq-kpi-val' style='color:#64B5F6'>${EQ.dh_pasados||0} dias</div><div class='eq-kpi-ay'>Quedan ${EQ.dh_restantes||0} habiles</div></div>`
@@ -190,10 +191,10 @@ function renderMain(){
         eqC['cEqPed']=new Chart(elp,{type:'bar',data:{labels:dp.labels,datasets:[
           {type:'bar',label:'Pedidos diario',data:dp.docs,backgroundColor:'#534AB799',borderColor:'#534AB7',borderWidth:1,borderRadius:4,yAxisID:'y'},
           {type:'line',label:'Pedidos acum',data:dp.docs_acum,borderColor:'#FFD740',backgroundColor:'rgba(255,215,64,0.1)',borderWidth:2.5,pointRadius:3,pointBackgroundColor:'#FFD740',tension:0.3,fill:true,yAxisID:'y2'}
-        ]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:500},
+        ]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:500},resizeDelay:100,
           plugins:{legend:{display:true,position:'top',labels:{color:'#90CAF9',font:{size:9},boxWidth:10,padding:8}},
             tooltip:{callbacks:{label:c=>c.dataset.label+': '+Number(c.raw).toLocaleString('es-CL')}}},
-          scales:{x:{ticks:{color:'#546E7A',font:{size:9},maxRotation:45},grid:{color:'rgba(255,255,255,0.04)'}},
+          scales:{x:{ticks:{color:'#546E7A',font:{size:8},maxRotation:45,autoSkip:true,maxTicksLimit:11},grid:{color:'rgba(255,255,255,0.04)'}},
             y:{position:'left',title:{display:true,text:'Diario',color:'#534AB7',font:{size:9}},ticks:{color:'#534AB7',font:{size:9},callback:fN},grid:{color:'rgba(255,255,255,0.04)'}},
             y2:{position:'right',title:{display:true,text:'Acumulado',color:'#FFD740',font:{size:9}},ticks:{color:'#FFD740',font:{size:9},callback:fN},grid:{drawOnChartArea:false}}
           }}});
