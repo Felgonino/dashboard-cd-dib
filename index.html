@@ -268,7 +268,7 @@ function mostrarDetalle(idx){
     <div class="p">
       <div class="av" style="${avStyle}">${hf?'':op.iniciales}</div>
       <div class="nm">${op.operador}</div>
-      <div class="bdg">🏆 #${op.ranking} / ${op.total_ops}</div>
+
       <div class="inc"><div class="il">INCENTIVO EST.</div><div class="iv">${fmt(op.total_est)}</div><div class="is">base + bonos</div></div>
       <div class="bc"><div class="bl"><span>vs promedio</span><span style="color:${pc}">${op.pct_vs_prom}%</span></div><div class="bb"><div class="bf" style="width:${Math.min(op.pct_vs_prom,100)}%;background:${pc}"></div></div></div>
       <div class="bc"><div class="bl"><span>vs líder</span><span>${op.pct_max}%</span></div><div class="bb"><div class="bf" style="width:${op.pct_max}%;background:${op.color}"></div></div></div>
