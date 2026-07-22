@@ -36,7 +36,7 @@ body{background:var(--bg);background-image:url("data:image/svg+xml,%3Csvg xmlns=
 .eq-cw canvas{flex:1;min-height:0;max-height:100%}
 .ops-grid{display:flex;flex-wrap:wrap;gap:5px;align-content:center;justify-content:center}
 .ops-grid{display:flex;flex-direction:column;gap:2px;overflow-y:auto;flex:1}
-.op-btn{background:rgba(46,117,182,0.12);border:1px solid rgba(46,117,182,0.3);border-radius:4px;padding:2px 6px;cursor:pointer;transition:all 0.2s;font-size:8px;font-weight:700;color:#fff;white-space:nowrap;text-align:center;width:100%;box-sizing:border-box}
+.op-btn{background:rgba(46,117,182,0.12);border:1px solid rgba(46,117,182,0.3);border-radius:4px;padding:2px 4px;cursor:pointer;transition:all 0.2s;font-size:8px;font-weight:700;color:#fff;white-space:normal;text-align:center;width:100%;box-sizing:border-box;line-height:1.2;word-break:break-word}
 .op-btn:hover{background:rgba(46,117,182,0.3);border-color:#64B5F6}
 .op-btn-noauth{cursor:default;opacity:0.6;border-style:dashed !important}
 .op-btn-noauth:hover{background:var(--card) !important;transform:none !important}
@@ -259,7 +259,7 @@ function renderMain(){
     const btn=document.createElement('div');
     btn.className='op-btn';
     btn.style.borderColor=op.color+'44';
-    btn.innerHTML=`<div class='op-btn-nombre'>${op.operador}</div>`;
+    btn.innerHTML=op.operador;
     btn.onclick=()=>mostrarDetalle(idx);
     grid.appendChild(btn);
   });
