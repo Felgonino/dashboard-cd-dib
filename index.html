@@ -89,15 +89,47 @@ body{background:var(--bg);background-image:url("data:image/svg+xml,%3Csvg xmlns=
   :root{--hh:54px}
   body{overflow-y:auto;height:auto}
   .hdr-title{font-size:10px;max-width:160px}.dib-logo{height:28px}.hdr-r{display:none}
+  /* Pantalla principal */
   #mainScreen{height:auto;overflow:visible;padding:8px;gap:8px}
   .eq-top{flex-wrap:wrap;gap:6px}
   .eq-kpi{min-width:calc(50% - 4px);flex:none}
   .eq-charts{grid-template-columns:1fr;gap:8px}
   .eq-cw{height:220px;min-height:unset}
-  .detail-body{grid-template-columns:1fr;grid-template-areas:"p" "k" "c" "g";height:auto;overflow-y:auto}
-  .av{max-height:160px}
+  /* Pantalla detalle operador — layout mobile */
+  #detailScreen{height:auto;overflow-y:auto}
+  .detail-body{
+    grid-template-columns:1fr;
+    grid-template-areas:"p" "k" "c" "g";
+    height:auto;padding:8px;gap:8px
+  }
+  /* Panel perfil mobile: horizontal */
+  .p{
+    flex-direction:row !important;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:8px;
+    padding:10px
+  }
+  /* Foto más pequeña y bien centrada en mobile */
+  .av{
+    width:100px !important;
+    height:130px !important;
+    max-height:130px !important;
+    aspect-ratio:unset !important;
+    border-radius:8px;
+    flex-shrink:0;
+    background-position:center center !important
+  }
+  /* Info del operador al lado de la foto */
+  .nm{font-size:13px;text-align:left}
+  .bdg{align-self:flex-start}
+  .inc{padding:8px}
+  .iv{font-size:18px}
+  .avance-box{font-size:9px}
+  /* KPIs, canales y gráfico */
   .gg{grid-template-columns:repeat(2,1fr)}
   .tg{grid-template-columns:repeat(2,1fr)}
+  /* Botones operadores */
   .ops-grid{grid-template-columns:repeat(3,1fr)}
   .op-btn{font-size:11px;padding:6px 8px}
   canvas{max-height:200px}
